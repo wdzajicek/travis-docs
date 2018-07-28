@@ -1,5 +1,15 @@
 # KCC Travis CI Documentation
 
+<br>
+
+##### Contents:
+
+1. [.travis.yml breakdown](https://github.com/wdzajicek/travis-docs/#travisyml-breakdown)
+2. [Encrypting Notification Emails](https://github.com/wdzajicek/travis-docs/#encrypting-notification-emails)
+3. [Encrypting and Calling Environment Variables](https://github.com/wdzajicek/travis-docs/#encrypting-and-calling-environment-variables)
+
+<br>
+
 ## .travis.yml breakdown:
 
     language: ruby
@@ -80,7 +90,7 @@ deploy.sh also issues a 15 second delay via `$ sleep 15` between the cleanFTP an
     - secure: ldvzd3QRFAcq/dGFwJHG+EUbmTM88HV3Ou7GHkS5rINCCZz1GXGMHJ2Il9SvpMIorEyy//p7qieaFG+3r+L1DpthLQBKEY5GEPlAgKjeduDQ1wjbWjXJ1llc0B39tZmMXu9xNRoLMjLqtvAl/IgUhCCnl4vvCrMJFtXzzA73HNz9XzFRhhaUF+UXPmGGrj+ABX9C4/ODUsZdFLox0kMiR/wjqkf4TDhLPszQuP49H9OQBqdfc9/7QCnLPYt77gPcpo6FLphdnyufCzdNrectGnU2HM7lStVGtP81EjkR04XjKF+XvBbWuk689kTBPNC1f3R1FcRFds7xXnKlAoTxrFO7Zd47K9GxiAUtG2xInbugHYcY/KN9lA0F35FFdbaksVPiMEYPlHMSKqPSJrviG58jGBhZiQXsAKU1psahLZKAayKeAkDAdWS2P42tNzG5817NSFT9DdWnUrGKgimuescXsuJ5E5J0Y9Dqg5tCi3CgKlU9E0pQEWqaILM0ZS5Vx1rvuZiYnTUWqefdVRrWZ3Z0c9itdu8hJOuBzLBVzzzk9eCkhdS+vVo+dMIpt1ecxX2qpRVUWJvxJ19CDgJPQL7pUb3T09MXx5r3atePwMrKcK18WGFV+PuPVYPPmxsjUXIpg4+/M2cRaRypwU+beENvXycO42+7I+nFzlxF6zA=
 
 <br>
-
+[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
 <br>
 
 ## Encrypting Notification emails
@@ -125,6 +135,8 @@ Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
 #### Travis can now decrypt your email and send you notifications without making your email publicly available.
 
 <br>
+[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
+<br>
 
 ## Encrypting and Calling Environment Variables
 
@@ -146,3 +158,7 @@ Example in a deploy.sh file used by travis:
 
 
     $ gulp deploy --user $FTP_USER --password $FTP_PASSWORD
+
+<br>
+
+[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
