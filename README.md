@@ -11,14 +11,14 @@
       packages:
       - ncftp
 
-#### before_install: gemfile.sh Creates the Gemfile for travis to use. Install npm v6.1.0:
+### before_install: gemfile.sh Creates the Gemfile for travis to use. Install npm v6.1.0:
 
     before_install:
     - chmod +x _scripts/gemfile.sh
     - _scripts/gemfile.sh
     - npm i -g npm@6.1.0
 
-#### install: npm install, bundle install, jekyll gem installs:
+### install: npm install, bundle install, jekyll gem installs:
 
     install:
     - npm install
@@ -27,13 +27,13 @@
     - gem install jekyll-feed
     - gem install jekyll-sitemap
 
-#### With CloudCannon's publishing workflow, the publish branch is the only one  that gets built.
+### With CloudCannon's publishing workflow, the publish branch is the only one  that gets built.
 
     branches:
     only:
     - publish
 
-#### Notification settings with encrypted emails: See [encrypting notification emails](https://github.com/wdzajicek/travis-docs/#encrypting-notification-emails)
+### Notification settings with encrypted emails: See [encrypting notification emails](https://github.com/wdzajicek/travis-docs/#encrypting-notification-emails)
 
     notifications:
     email:
@@ -44,12 +44,12 @@
       on_success: never
       on_failure: always
 
-#### before_script: install Gulp.js
+### before_script: install Gulp.js
 
     before_script:
     - npm install -g gulp-cli
 
-#### The build script: `$ gulp travis`
+### The build script: `$ gulp travis`
 
 the "travis" gulp task creates a production build of the site (production uses asset minification i.e. images, JS, & CSS minified/uglified/compressed.
 
@@ -57,7 +57,7 @@ the "travis" gulp task creates a production build of the site (production uses a
     - chmod +x _scripts/build.sh
     - _scripts/build.sh
 
-#### after_success: Deploy!
+### after_success: Deploy!
 
 deploy.sh runs two gulp tasks: cleanFTP and newerFTP. cleanFTP deletes everything from the server folder and newerFTP copies the new passing site build to the server.
 
@@ -67,7 +67,7 @@ deploy.sh also issues a 15 second delay via `$ sleep 15` between the cleanFTP an
     - chmod +x _scripts/deploy.sh
     - _scripts/deploy.sh
 
-#### Global Environment Variables: see encrypting and calling environment variables.
+### Global Environment Variables: see encrypting and calling environment variables.
 
     env:
     global:
@@ -84,7 +84,7 @@ to encrypt travis variables use the travis gem and login using Github credential
     $ gem install travis
     $ travis login            // this will prompt for Github user/password
 
-#### Unencrypted notification email in .travis.yml.
+### Unencrypted notification email in .travis.yml.
 
 This is how notifications are set in .travis.yml without encryption
 
@@ -94,7 +94,7 @@ This is how notifications are set in .travis.yml without encryption
         - <recipient-1>@gmail.com
         - <recipient-2>@gmail.com
 
-#### To encrypt an email.
+### To encrypt an email.
 
 You must be in a local git repository that travis-ci.org has access to.
 
@@ -106,7 +106,7 @@ Travis will return something like this:
 
       secure: "XDD3KrR1M5Xmg+wlea4y1o14uhIhV78yAUA96SaQT4KKBRXqixQbo+Mme4ghIRlWyuZ35BReL6h/MO2Gr3xJ1TEsmo/7d+aP+OazwJ4weGX7YEQYuE7RGKQt4LIENQVhbJmUspzoZl/bocas+2PaiS8LT4cKJ58l35kFW4fIONPir4M/4xUqJX5kxvUqww7K+ijipJYAcO2ySeFeMbPL5sMxezBaXNg1sG44s/4RmHJ9tpLlnLJc1X1n0OdxrNPI2KpEQWIyTdve7vtUZb7FJ0UefL1ll9C4fojhIp8Fb3IzS5W3hLiBTys56OvhEcgp0SejCrTD9guxrwJxrZPy5i2T4Ahjg2H7ej7QsvBqh3kIfxKzKFLVvp9jKfiE0zI+lTHWhKcGXHRZTP5qLtAgEaVyKiEVd1wgwrbnv+JPLRT7Gr4CIb9BtTZjPyqAErC1uVcvapvzR19EoIAC+/Z5cyQlkZkXeLx+5c1675WoHae92MzE8xr2lf5t9b9CVk1Hdd47qaoRz172ikddcWOO242v6orxh0QT0ar65L9DqMQ+7IZP+95wn/fd97Et7zMLpkVrzaj8kSUDAi2QvhhSunBCwToe8czAUwZQ160BTicCIZ8LZpjeqZXTvEBGdqgT3Df7dNrsbODY/XiVLmpIHRaUPlcJWiwIjD2WCuGqMAg="
 
-#### Copy and paste into .travis.yml
+### Copy and paste into .travis.yml
 
 Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
 
@@ -116,7 +116,7 @@ Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
         - secure: "XDD3KrR1M5Xmg+wlea4y1o14uhIhV78yAUA96SaQT4KKBRXqixQbo+Mme4ghIRlWyuZ35BReL6h/MO2Gr3xJ1TEsmo/7d+aP+OazwJ4weGX7YEQYuE7RGKQt4LIENQVhbJmUspzoZl/bocas+2PaiS8LT4cKJ58l35kFW4fIONPir4M/4xUqJX5kxvUqww7K+ijipJYAcO2ySeFeMbPL5sMxezBaXNg1sG44s/4RmHJ9tpLlnLJc1X1n0OdxrNPI2KpEQWIyTdve7vtUZb7FJ0UefL1ll9C4fojhIp8Fb3IzS5W3hLiBTys56OvhEcgp0SejCrTD9guxrwJxrZPy5i2T4Ahjg2H7ej7QsvBqh3kIfxKzKFLVvp9jKfiE0zI+lTHWhKcGXHRZTP5qLtAgEaVyKiEVd1wgwrbnv+JPLRT7Gr4CIb9BtTZjPyqAErC1uVcvapvzR19EoIAC+/Z5cyQlkZkXeLx+5c1675WoHae92MzE8xr2lf5t9b9CVk1Hdd47qaoRz172ikddcWOO242v6orxh0QT0ar65L9DqMQ+7IZP+95wn/fd97Et7zMLpkVrzaj8kSUDAi2QvhhSunBCwToe8czAUwZQ160BTicCIZ8LZpjeqZXTvEBGdqgT3Df7dNrsbODY/XiVLmpIHRaUPlcJWiwIjD2WCuGqMAg="
         - <recipient-2>@gmail.com
 
-##### Travis can now decrypt your email and send you notifications without making your email publicly available.
+#### Travis can now decrypt your email and send you notifications without making your email publicly available.
 
 <br>
 
