@@ -93,3 +93,31 @@ This is how notifications are set in .travis.yml without encryption
       recipients:
         - <recipient-1>@gmail.com
         - <recipient-2>@gmail.com
+
+#### To encrypt an email.
+
+You must be in a local git repository that travis-ci.org has access to.
+
+    $ travis encrypt "<recipient-1>@gmail.com"
+
+Travis will return something like this:
+
+    Please add the following to your .travis.yml file:
+
+      secure: "XDD3KrR1M5Xmg+wlea4y1o14uhIhV78yAUA96SaQT4KKBRXqixQbo+Mme4ghIRlWyuZ35BReL6h/MO2Gr3xJ1TEsmo/7d+aP+OazwJ4weGX7YEQYuE7RGKQt4LIENQVhbJmUspzoZl/bocas+2PaiS8LT4cKJ58l35kFW4fIONPir4M/4xUqJX5kxvUqww7K+ijipJYAcO2ySeFeMbPL5sMxezBaXNg1sG44s/4RmHJ9tpLlnLJc1X1n0OdxrNPI2KpEQWIyTdve7vtUZb7FJ0UefL1ll9C4fojhIp8Fb3IzS5W3hLiBTys56OvhEcgp0SejCrTD9guxrwJxrZPy5i2T4Ahjg2H7ej7QsvBqh3kIfxKzKFLVvp9jKfiE0zI+lTHWhKcGXHRZTP5qLtAgEaVyKiEVd1wgwrbnv+JPLRT7Gr4CIb9BtTZjPyqAErC1uVcvapvzR19EoIAC+/Z5cyQlkZkXeLx+5c1675WoHae92MzE8xr2lf5t9b9CVk1Hdd47qaoRz172ikddcWOO242v6orxh0QT0ar65L9DqMQ+7IZP+95wn/fd97Et7zMLpkVrzaj8kSUDAi2QvhhSunBCwToe8czAUwZQ160BTicCIZ8LZpjeqZXTvEBGdqgT3Df7dNrsbODY/XiVLmpIHRaUPlcJWiwIjD2WCuGqMAg="
+
+#### Copy and paste into .travis.yml
+
+Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
+
+    notifications:
+    email:
+      recipients:
+        - secure: "XDD3KrR1M5Xmg+wlea4y1o14uhIhV78yAUA96SaQT4KKBRXqixQbo+Mme4ghIRlWyuZ35BReL6h/MO2Gr3xJ1TEsmo/7d+aP+OazwJ4weGX7YEQYuE7RGKQt4LIENQVhbJmUspzoZl/bocas+2PaiS8LT4cKJ58l35kFW4fIONPir4M/4xUqJX5kxvUqww7K+ijipJYAcO2ySeFeMbPL5sMxezBaXNg1sG44s/4RmHJ9tpLlnLJc1X1n0OdxrNPI2KpEQWIyTdve7vtUZb7FJ0UefL1ll9C4fojhIp8Fb3IzS5W3hLiBTys56OvhEcgp0SejCrTD9guxrwJxrZPy5i2T4Ahjg2H7ej7QsvBqh3kIfxKzKFLVvp9jKfiE0zI+lTHWhKcGXHRZTP5qLtAgEaVyKiEVd1wgwrbnv+JPLRT7Gr4CIb9BtTZjPyqAErC1uVcvapvzR19EoIAC+/Z5cyQlkZkXeLx+5c1675WoHae92MzE8xr2lf5t9b9CVk1Hdd47qaoRz172ikddcWOO242v6orxh0QT0ar65L9DqMQ+7IZP+95wn/fd97Et7zMLpkVrzaj8kSUDAi2QvhhSunBCwToe8czAUwZQ160BTicCIZ8LZpjeqZXTvEBGdqgT3Df7dNrsbODY/XiVLmpIHRaUPlcJWiwIjD2WCuGqMAg="
+        - <recipient-2>@gmail.com
+
+##### Travis can now decrypt your email and send you notifications without making your email publicly available.
+
+<br>
+
+<!-- ## Encrypting/Calling Environment Variables in .travis.yml -->
