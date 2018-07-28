@@ -33,7 +33,7 @@
     only:
     - publish
 
-#### Notification settings with encrypted emails: See encrypting notification emails
+#### Notification settings with encrypted emails: See [encrypting notification emails](/#encrypting-notification-emails)
 
     notifications:
     email:
