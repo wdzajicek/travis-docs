@@ -21,14 +21,18 @@
       packages:
       - ncftp
 
-### before_install: gemfile.sh Creates the Gemfile for travis to use. Install npm v6.1.0:
+### before_install:
+
+gemfile.sh Creates the Gemfile for travis to use. Install npm v6.1.0:
 
     before_install:
     - chmod +x _scripts/gemfile.sh
     - _scripts/gemfile.sh
     - npm i -g npm@6.1.0
 
-### install: npm install, bundle install, jekyll gem installs:
+### install:
+
+npm install, bundle install, jekyll gem installs:
 
     install:
     - npm install
@@ -37,7 +41,9 @@
     - gem install jekyll-feed
     - gem install jekyll-sitemap
 
-### With CloudCannon's publishing workflow, the publish branch is the only one  that gets built.
+### Defining Branches
+
+With CloudCannon's publishing workflow, the publish branch is the only one  that gets built.
 
     branches:
     only:
@@ -56,12 +62,16 @@
       on_success: never
       on_failure: always
 
-### before_script: install Gulp.js
+### before_script:
+
+##### install Gulp.js
 
     before_script:
     - npm install -g gulp-cli
 
-### The build script: `$ gulp travis`
+### script:
+
+##### The build script: `$ gulp travis`
 
 the "travis" gulp task creates a production build of the site (production uses asset minification i.e. images, JS, & CSS minified/uglified/compressed.
 
@@ -69,7 +79,13 @@ the "travis" gulp task creates a production build of the site (production uses a
     - chmod +x _scripts/build.sh
     - _scripts/build.sh
 
-### after_success: Deploy!
+### after_succes:
+
+
+
+
+
+##### Deploy!
 
 deploy.sh runs two gulp tasks: cleanFTP and newerFTP. cleanFTP deletes everything from the server folder and newerFTP copies the new passing site build to the server.
 
