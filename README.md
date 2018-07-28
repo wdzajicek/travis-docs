@@ -91,11 +91,11 @@ deploy.sh also issues a 15 second delay via `$ sleep 15` between the cleanFTP an
 
 <br>
 
-[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
-
 <br>
 
 ## Encrypting Notification emails
+
+[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
 
 to encrypt travis variables use the travis gem and login using Github credentials:
 
@@ -138,11 +138,11 @@ Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
 
 <br>
 
-[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
-
 <br>
 
 ## Encrypting and Calling Environment Variables
+
+[Page top](https://github.com/wdzajicek/travis-docs/#kcc-travis-ci-documentation)
 
 to encrypt travis variables use the travis gem and login using Github credentials. You must be in a local git repository that travis-ci.org has access to.
 
