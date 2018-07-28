@@ -33,7 +33,9 @@
     only:
     - publish
 
-### Notification settings with encrypted emails: See [encrypting notification emails](https://github.com/wdzajicek/travis-docs/#encrypting-notification-emails)
+### Notification settings with encrypted emails
+
+#### See [Encrypting Notification Emails](https://github.com/wdzajicek/travis-docs/#encrypting-notification-emails)
 
     notifications:
     email:
@@ -67,7 +69,9 @@ deploy.sh also issues a 15 second delay via `$ sleep 15` between the cleanFTP an
     - chmod +x _scripts/deploy.sh
     - _scripts/deploy.sh
 
-### Global Environment Variables: see encrypting and calling environment variables.
+### Global Environment Variables
+
+#### See [Encrypting and Calling Environment Variables](https://github.com/wdzajicek/travis-docs/#encrypting-and-calling-environment-variables).
 
     env:
     global:
@@ -75,7 +79,9 @@ deploy.sh also issues a 15 second delay via `$ sleep 15` between the cleanFTP an
     - secure: J5PE3reG8l3IOyFKxqmRpVdiGwa5Uc8uo5ksJptBDB/8Bju/Y+mlbZy6ELIE+nQcFMo0WqBx59qY5h8PPG2NeLBlpkgPWiKecxiOBIHR4WwPV2EFcBvcFwM++k4YcQpB/bghZP5OzzNO1psOnoNM/V3DNgsy1V8BmsnmqpkF1Y3aQZfsIKwpITFaUFhX/9k29l5dQqS4cWJKktUjei3HNhYB6zst2K5cWxqagTbB2PjPWTIw1uQzQR4PR1XZ0gPq5R8KpI2Rey4HAucDnesgBxSSgoo3DppHGId8NdXGVh4CxIHowv6PGZtZ5sF/Q7WZcwbSMDstf+ZZ3A4jcJyReadZUsRnE+H+YPrXIS8GwJZ6c0E9s8hN+1lkEog0gzT0sskD4Psv4Yk2NuP+zrNsfxwf9hrNWlOIM2eTF+5LFr5TlwHHKvkByGxfpkePTQBYc1g02EDxzSQnx/nEqL+c0e2lMskT0adTU/lbUkqtsTD4taxAEyZbAseJ0dkIwl4oPSaLwwpMlMcSy7H4SiJzWpI+sU+XNCyg25oDKn3KjcQIzZC5jce1EtgnKY/Ww1FTPI4tPM2r0mq7TnYOI44cH91TiHlMOg/jOBRSmtlhMHcr6Scsy4LegOfAVlj67x+mEvT/GOzbheLS+QtqmU2XFELWS9KHA+N/C6XGkrqXCzE=
     - secure: ldvzd3QRFAcq/dGFwJHG+EUbmTM88HV3Ou7GHkS5rINCCZz1GXGMHJ2Il9SvpMIorEyy//p7qieaFG+3r+L1DpthLQBKEY5GEPlAgKjeduDQ1wjbWjXJ1llc0B39tZmMXu9xNRoLMjLqtvAl/IgUhCCnl4vvCrMJFtXzzA73HNz9XzFRhhaUF+UXPmGGrj+ABX9C4/ODUsZdFLox0kMiR/wjqkf4TDhLPszQuP49H9OQBqdfc9/7QCnLPYt77gPcpo6FLphdnyufCzdNrectGnU2HM7lStVGtP81EjkR04XjKF+XvBbWuk689kTBPNC1f3R1FcRFds7xXnKlAoTxrFO7Zd47K9GxiAUtG2xInbugHYcY/KN9lA0F35FFdbaksVPiMEYPlHMSKqPSJrviG58jGBhZiQXsAKU1psahLZKAayKeAkDAdWS2P42tNzG5817NSFT9DdWnUrGKgimuescXsuJ5E5J0Y9Dqg5tCi3CgKlU9E0pQEWqaILM0ZS5Vx1rvuZiYnTUWqefdVRrWZ3Z0c9itdu8hJOuBzLBVzzzk9eCkhdS+vVo+dMIpt1ecxX2qpRVUWJvxJ19CDgJPQL7pUb3T09MXx5r3atePwMrKcK18WGFV+PuPVYPPmxsjUXIpg4+/M2cRaRypwU+beENvXycO42+7I+nFzlxF6zA=
 
-<br>  
+<br>
+
+<br>
 
 ## Encrypting Notification emails
 
@@ -84,9 +90,9 @@ to encrypt travis variables use the travis gem and login using Github credential
     $ gem install travis
     $ travis login            // this will prompt for Github user/password
 
-### Unencrypted notification email in .travis.yml.
+### Default notification email example in .travis.yml.
 
-This is how notifications are set in .travis.yml without encryption
+This is how standard email notifications are set in .travis.yml without encryption:
 
     notifications:
     email:
@@ -120,4 +126,23 @@ Replace `- <recipient-1>@gmail.com` with `- secure: <long encrypted string>`:
 
 <br>
 
-<!-- ## Encrypting/Calling Environment Variables in .travis.yml -->
+## Encrypting and Calling Environment Variables
+
+to encrypt travis variables use the travis gem and login using Github credentials. You must be in a local git repository that travis-ci.org has access to.
+
+    $ gem install travis
+    $ travis login            // this will prompt for Github user/password
+
+#### Encrypting Environment Variables and writing to .travis.yml at the same time:
+
+If I wanted to put an FTP username and password in my .travis.yml as an encrypted environment variable. The `--add` flag writes the encrypted string to your .travis.yml file:
+
+    $ travis encrypt FTP_USER="<example user>" --add
+    $ travis encrypt FTP_PASSWORD="<example password>" --add
+
+Travis now has access to those encrypted variables. For example you could call the FTP user and password in your deploy script use the dollar-sign followed by the variables name (e.g. `$FTP_USER`)
+
+Example in a deploy.sh file used by travis:
+
+
+    $ gulp deploy --user $FTP_USER --password $FTP_PASSWORD
